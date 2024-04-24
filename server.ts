@@ -21,17 +21,15 @@ const limiter = rateLimit({
 app.use(limiter)
 
 app.get('/', async (req, res) => {
-    const { repoUrl } = req.query
+    const { repoName } = req.query
 
-    // Validate repo URL format
-    if (
-        typeof repoUrl !== 'string' ||
-        !repoUrl.startsWith('https://github.com/The-Matrix-Labs/')
-    ) {
-        return res.status(400).send('Invalid repository URL.')
+    // Validate repository name
+    if (typeof repoName !== 'string' || repoName.trim() === '') {
+        return res.status(400).send('Invalid repository name.')
     }
 
-    const [, , , owner, repo] = repoUrl.split('/')
+    const owner = 'The-Matrix-Labs'
+    const repo = repoName.trim()
 
     try {
         // Attempt to get the README file
