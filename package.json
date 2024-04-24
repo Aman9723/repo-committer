@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "node server.js --env-file=.env",
+        "start": "node server.js",
         "dev": "node -r ts-node/register --env-file=.env server.ts",
         "build": "tsc"
     },
